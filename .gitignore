@@ -1,0 +1,13 @@
+tmp/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+resources/*
+!resources/.gitkeep
+build/*
+!build/.gitkeep
