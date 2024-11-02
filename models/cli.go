@@ -6,6 +6,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// Ocupar Ansible, systemctl, liquibase, awx/other
+
 func init() {
 	rootCmd := &cobra.Command{
 		Use:     "toolkit",

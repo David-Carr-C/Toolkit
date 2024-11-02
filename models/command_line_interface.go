@@ -1,8 +1,6 @@
 package models
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
@@ -58,6 +56,7 @@ func (cli *CommandLineInterface) init() {
 	cli.rootCmd.AddCommand(cli.updateCmd)
 }
 
+/*
 func (cli *CommandLineInterface) runRootCmd(cmd *cobra.Command, args []string) {
 	fmt.Println("Hello from cobra")
 
@@ -95,3 +94,4 @@ func (cli *CommandLineInterface) runUpdateCmd(cmd *cobra.Command, args []string)
 	// fmt.Println("Done")
 	// fmt.Println(string(output))
 }
+*/
