@@ -1,0 +1,30 @@
+projects:
+  pcb:
+    backup_dirs:
+      - "APIs/Codigos/"
+      - "APIs/ComplementoDescarga/"
+      - "APIs/Complementos/"
+      - "APIs/CSD/"
+      - "APIs/DM/log_proceso/"
+      - "APIs/DM/zip_files/"
+      - "APIs/DM/zip_missing/"
+      - "APIs/DM/zip_processed/"
+      - "APIs/Expediente/Descargas/"
+      - "APIs/Facturas/"
+      - "APIs/FacturasCadenas/"
+      - "APIs/FacturasCanceladas/"
+      - "APIs/FacturasDescarga/"
+      - "APIs/libs/PHP8/log_proceso/"
+      - "APIs/log/"
+      - "APIs/logProcesos/"
+      - "APIs/pcbFiles/"
+      - "APIs/Prospecto/"
+      - "APIs/Proveedor/"
+      - "APIs/Reportes/"
+  prodemex:
+    backup_dirs:
+      - "Prodemex/Ruta1/"
+      - "Prodemex/Ruta2/"
+  otro_proyecto:
+    backup_dirs:
+      - "Otras/Rutas/"

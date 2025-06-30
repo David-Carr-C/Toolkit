@@ -11,5 +11,7 @@ func NewToolkit() *cobra.Command {
 		Run:     Run,
 	}
 
+	cmd.Flags().StringP("project", "p", "", "Nombre del proyecto para el que se desea realizar la acción")
+	cmd.Flags().StringP("database", "d", "", "Nombre de la base de datos para la que se desea realizar la acción")
 	return cmd
 }
