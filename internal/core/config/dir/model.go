@@ -1,4 +1,4 @@
-package config
+package dir
 
 type DirConfig struct {
 	BackupDirs []string `yaml:"backup_dirs"`

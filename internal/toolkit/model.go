@@ -2,6 +2,11 @@ package toolkit
 
 import "github.com/spf13/cobra"
 
+type Flags struct {
+	projectName  string
+	databaseName string
+}
+
 func NewToolkit() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "toolkit",
@@ -11,7 +16,19 @@ func NewToolkit() *cobra.Command {
 		Run:     Run,
 	}
 
-	cmd.Flags().StringP("project", "p", "", "Nombre del proyecto para el que se desea realizar la acción")
-	cmd.Flags().StringP("database", "d", "", "Nombre de la base de datos para la que se desea realizar la acción")
+	cmd.Flags().StringP(
+		"project",
+		"p",
+		"",
+		"Nombre del proyecto para el que se desea desglosar información",
+	)
+
+	cmd.Flags().StringP(
+		"database",
+		"d",
+		"",
+		"Nombre de la base de datos para la que se desea desglosar información",
+	)
+
 	return cmd
 }

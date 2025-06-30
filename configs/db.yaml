@@ -1,0 +1,27 @@
+databases:
+  criteria:
+    user: "criteria"
+    password: "${CRITERIA_PASSWORD}"
+    host: "localhost"
+    port: 3306
+    backup_dbs:
+      - "calidad_pcb"
+      - "productivo_pcb"
+  mip:
+    user: "mip_user"
+    password: "${MIP_PASSWORD}"
+    host: "localhost"
+    port: 3306
+    backup_dbs:
+      - "calidad_mip"
+      - "productivo_mip"
+
+  horizon:
+    user: "horizon_user"
+    password: "${HORIZON_PASSWORD}"
+    host: "localhost"
+    port: 3306
+    backup_dbs:
+      - "calidad_escuela"
+      - "productivo_escuela"
+

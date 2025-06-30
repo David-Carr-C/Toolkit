@@ -11,5 +11,7 @@ func NewBackup() *cobra.Command {
 		Run:     Run,
 	}
 
+	cmd.Flags().StringP("database", "d", "", "Nombre de la base de datos para la que se desea realizar el backup")
+
 	return cmd
 }
