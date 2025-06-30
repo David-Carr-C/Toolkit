@@ -1,0 +1,6 @@
+root = "."
+[build]
+cmd = "go build -o ./tmp/main ./cmd/toolkit"  # Compila tu paquete principal
+bin = "tmp/main"  # Ruta del binario generado
+include_ext = ["go", "html", "tpl", "tmpl", "json"]  # Archivos a observar
+exclude_dir = ["tmp", "build", "vendor"]  # Directorios ignorados
