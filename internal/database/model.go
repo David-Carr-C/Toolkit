@@ -7,7 +7,7 @@ func NewDatabase() *cobra.Command {
 		Use:     "database",
 		Aliases: []string{"tk"},
 		Short:   "Especificación de versionamiento, comparación y actualización de bases de datos",
-		Long:    "Automatiza tareas de creación de bases de datos.",
+		Long:    "Automatiza tareas de administración de bases de datos.",
 		Run:     Run,
 	}
 

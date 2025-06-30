@@ -11,3 +11,6 @@ resources/*
 !resources/.gitkeep
 build/*
 !build/.gitkeep
+
+*.log
+toolkit.log

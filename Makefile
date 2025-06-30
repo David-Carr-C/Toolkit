@@ -6,6 +6,7 @@ GOGET=$(GOCMD) get
 ARGS=$(filter-out $@,$(MAKECMDGOALS))
 
 BINARY_NAME=toolkit
+MAIN_PACKAGE=./cmd/toolkit  # Punto clave: Especificar paquete principal
 
 BOLD=\033[1m
 RED=\033[31m
@@ -29,13 +30,13 @@ clean:
 # Build the binary
 build:
 	@echo "$(ARROW)$(BOLD)$(RED)Build started$(RESET)"
-	$(GOBUILD) -o build/$(BINARY_NAME) -v
+	$(GOBUILD) -o build/$(BINARY_NAME) -v $(MAIN_PACKAGE)
 	@echo "$(ARROW)$(BOLD)$(RED)Build complete$(RESET)"
 
 # Build the binary and run it with the given arguments
 run:
 	@echo "$(ARROW)$(BOLD)$(RED)Build started$(RESET)"
-	$(GOBUILD) -o build/$(BINARY_NAME) -v
+	$(GOBUILD) -o build/$(BINARY_NAME) -v $(MAIN_PACKAGE)
 	@echo "$(ARROW)$(BOLD)$(RED)Build complete$(RESET)"
 	@echo "$(ARROW)$(BOLD)$(MAGENTA)Run started$(RESET)"
 	./build/$(BINARY_NAME) $(ARGS)
@@ -52,9 +53,10 @@ test:
 
 # Proof whatever you want in Makefile
 proof:
+	@echo "$(ARROW)$(BOLD)$(WHITE)Proof started$(RESET)"
 	./build/$(BINARY_NAME) --help
 	@echo "---------------------------------------------------------"
 	./build/$(BINARY_NAME) $(ARGS) --help
-	@echo "Proof complete"
+	@echo "${ARROW}$(BOLD)$(WHITE)Proof complete$(RESET)"
 
 .PHONY: all clean build run test proof

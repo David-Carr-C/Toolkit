@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"runtime/debug"
 
 	"criteria.mx/scripts/internal/core"
 	"criteria.mx/scripts/pkg"
@@ -9,6 +10,13 @@ import (
 )
 
 func main() {
+	defer func() {
+		if r := recover(); r != nil {
+			stack := debug.Stack()
+			log.Fatalf("⚠️  Application panicked: %v\nStack trace:\n%s", r, stack)
+		}
+	}()
+
 	if err := godotenv.Load(); err != nil {
 		log.Fatal("⚠️  No se encontró archivo .env, usando variables de entorno del sistema")
 	}
