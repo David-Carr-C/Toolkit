@@ -1,17 +1,13 @@
 package db
 
-type DbConfig struct {
+type DatabaseConfig struct {
+	User      string   `yaml:"user"`
+	Password  string   `yaml:"password"`
+	Host      string   `yaml:"host"`
+	Port      int      `yaml:"port"`
 	BackupDbs []string `yaml:"backup_dbs"`
 }
 
-type DatabaseConfig struct {
-	User     string `yaml:"user"`
-	Password string `yaml:"password"`
-	Host     string `yaml:"host"`
-	Port     int    `yaml:"port"`
-}
-
 type Config struct {
-	DatabaseConfig DatabaseConfig
-	Databases      map[string]DbConfig `yaml:"databases"`
+	Databases map[string]DatabaseConfig `yaml:"databases"`
 }

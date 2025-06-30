@@ -51,7 +51,7 @@ func seeDatabases(databaseName string) {
 		fmt.Println("Bases de datos:")
 		resultSet, _ := db.GetAllDatabases()
 		for _, db := range resultSet {
-			fmt.Print("  - ", db, "\n")
+			fmt.Printf("  - %s: %s\n", db["database"], db["status"])
 		}
 	} else {
 		dirs, err := db.GetDatabaseConfig(databaseName)
