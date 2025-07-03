@@ -11,4 +11,5 @@ type Log struct {
 	BackupSHA256      string
 	DatabaseSHA256    string
 	CreatedAt         string
+	Synchronized      bool
 }

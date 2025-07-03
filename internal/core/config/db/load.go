@@ -34,7 +34,7 @@ func GetAllDatabases() ([]map[string]string, error) {
 		var configured string
 
 		if pkg.IsEnvVarRaw(db.Password) {
-			configured = "not configured"
+			configured = "error"
 		} else {
 			configured = "configured"
 		}

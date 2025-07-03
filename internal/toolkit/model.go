@@ -5,6 +5,8 @@ import "github.com/spf13/cobra"
 type Flags struct {
 	projectName  string
 	databaseName string
+	serverName   string
+	sync         string
 }
 
 func NewToolkit() *cobra.Command {
@@ -28,6 +30,19 @@ func NewToolkit() *cobra.Command {
 		"d",
 		"",
 		"Nombre de la base de datos para la que se desea desglosar información",
+	)
+
+	cmd.Flags().StringP(
+		"server",
+		"s",
+		"",
+		"Nombre del servidor para el que se desea desglosar información",
+	)
+
+	cmd.Flags().String(
+		"sync",
+		"",
+		"Sincroniza el proyecto con Elasticsearch",
 	)
 
 	return cmd

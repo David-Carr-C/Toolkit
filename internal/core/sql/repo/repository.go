@@ -95,6 +95,15 @@ func (r *RepositoryLog) InsertDatabase(idLog int64, sha256 string) (int64, error
 	return lastID, nil
 }
 
+func (r *RepositoryLog) UpdateSynchronized(idLog int64, synchronized bool) error {
+	_, err := r.sqlite.Exec(`UPDATE log SET synchronized = ? WHERE id = ?`, synchronized, idLog)
+	if err != nil {
+		return fmt.Errorf("[UpdateSynchronized] Error updating synchronized status for log ID %d: %w", idLog, err)
+	}
+
+	return nil
+}
+
 // Retorna todos los logs o si se especifica un ID, retorna el log correspondiente.
 // Parámetros:
 // - idLog ID del log a buscar, si es 0 retorna todos los logs
@@ -102,7 +111,7 @@ func (r *RepositoryLog) InsertDatabase(idLog int64, sha256 string) (int64, error
 // Retorna:
 // - *model.Log Retorna un puntero al modelo Log con los datos del log
 func (r *RepositoryLog) GetLog(idLog, limit int64) (*model.Log, error) {
-	query := `SELECT l.id, l.message, l.exception, l.level, l.created_at,
+	query := `SELECT l.id, l.message, l.exception, l.level, l.created_at, l.synchronized,
 				s.server AS source_server,
 				d.server AS destination_server, d.path AS destination_path,
 				b.sha256 AS backup_sha256,
@@ -134,6 +143,7 @@ func (r *RepositoryLog) GetLog(idLog, limit int64) (*model.Log, error) {
 		&log.DestinationPath,
 		&log.BackupSHA256,
 		&log.DatabaseSHA256,
+		&log.Synchronized,
 	)
 	if err != nil {
 		if err == sql.ErrNoRows {

@@ -50,6 +50,7 @@ func (s *Migration) createLogTable() error {
 		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 		message TEXT NOT NULL,
 		exception TEXT,
+		synchronized BOOLEAN NOT NULL DEFAULT 0,
 		level TEXT NOT NULL CHECK(level IN ('DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'))
 	);`)
 
