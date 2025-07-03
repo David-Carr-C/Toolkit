@@ -1,0 +1,12 @@
+servers:
+  remote:
+    host: "example.com"
+    port: 22
+    username: "user"
+    private_key: "/path/to/private/key"
+
+  local:
+    host: "localhost"
+    port: 22
+    username: "localuser"
+    private_key: "/path/to/local/private/key"

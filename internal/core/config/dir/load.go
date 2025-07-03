@@ -2,28 +2,13 @@ package dir
 
 import (
 	"fmt"
-	"os"
 
-	"gopkg.in/yaml.v3"
+	"criteria.mx/scripts/internal/core/config/interfaces"
 )
 
-func loadConfig(path string) (*Config, error) {
-	config := &Config{}
-	file, err := os.Open(path)
-	if err != nil {
-		return nil, err
-	}
-	defer file.Close()
-
-	decoder := yaml.NewDecoder(file)
-	if err := decoder.Decode(config); err != nil {
-		return nil, err
-	}
-	return config, nil
-}
-
 func GetProjectDirs(projectName string) ([]string, error) {
-	config, err := loadConfig("configs/dir.yaml")
+	var config *Config
+	err := interfaces.LoadConfig("configs/dir.yaml", &config)
 	if err != nil {
 		return nil, fmt.Errorf("[GetProjectDirs] error loading config: %w", err)
 	}
@@ -36,7 +21,8 @@ func GetProjectDirs(projectName string) ([]string, error) {
 }
 
 func GetAllProjects() ([]string, error) {
-	config, err := loadConfig("configs/dir.yaml")
+	var config *Config
+	err := interfaces.LoadConfig("configs/dir.yaml", &config)
 	if err != nil {
 		return nil, fmt.Errorf("[GetAllProjectNames] error loading config: %w", err)
 	}

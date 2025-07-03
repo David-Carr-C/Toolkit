@@ -5,6 +5,7 @@ import (
 	"runtime/debug"
 
 	"criteria.mx/scripts/internal/core"
+	"criteria.mx/scripts/internal/core/sql/sqlite"
 	"criteria.mx/scripts/pkg"
 	"github.com/joho/godotenv"
 )
@@ -23,6 +24,10 @@ func main() {
 
 	if err := pkg.InitLogger(); err != nil {
 		log.Fatalf("⚠️  Error initializing logger: %v", err)
+	}
+
+	if err := sqlite.InitSqlite(); err != nil {
+		log.Fatalf("⚠️  Error initializing SQLite: %v", err)
 	}
 
 	core.Run()
