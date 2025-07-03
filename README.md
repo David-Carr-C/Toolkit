@@ -33,3 +33,8 @@
         "criteria"
       ],
 ```
+
+### Implementaciones
+- Conexión a ElasticSearch
+- Conexión a Vault para el manejo de secretos
+- Tests
