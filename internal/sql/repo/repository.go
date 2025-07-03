@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"criteria.mx/scripts/internal/core/sql/model"
+	"criteria.mx/scripts/internal/sql/model"
 )
 
 var repo *RepositoryLog

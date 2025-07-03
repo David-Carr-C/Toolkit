@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 
-	"criteria.mx/scripts/internal/core/sql/migration"
-	"criteria.mx/scripts/internal/core/sql/repo"
+	"criteria.mx/scripts/internal/sql/migration"
+	"criteria.mx/scripts/internal/sql/repo"
 	_ "github.com/mattn/go-sqlite3"
 )
 

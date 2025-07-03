@@ -5,7 +5,7 @@ import (
 	"runtime/debug"
 
 	"criteria.mx/scripts/internal/core"
-	"criteria.mx/scripts/internal/core/sql/sqlite"
+	"criteria.mx/scripts/internal/sql/sqlite"
 	"criteria.mx/scripts/pkg"
 	"github.com/joho/godotenv"
 )
