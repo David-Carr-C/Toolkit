@@ -16,4 +16,6 @@ build/*
 
 .vscode/
 toolkit.db
+toolkit.db-shm
+toolkit.db-wal
 .env

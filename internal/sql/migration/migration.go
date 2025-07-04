@@ -21,6 +21,9 @@ func NewMigration(db *sql.DB) error {
 }
 
 func (s *Migration) migrate() error {
+	if err := s.pragma(); err != nil {
+		return fmt.Errorf("[Migrate] Error setting PRAGMA: %w", err)
+	}
 	if err := s.createLogTable(); err != nil {
 		return fmt.Errorf("[Migrate] Error creating tables: %w", err)
 	}
@@ -39,6 +42,47 @@ func (s *Migration) migrate() error {
 
 	if err := s.createDatabaseTable(); err != nil {
 		return fmt.Errorf("[Migrate] Error creating repository log table: %w", err)
+	}
+
+	return nil
+}
+
+func (s *Migration) pragma() error {
+	_, err := s.db.Exec("PRAGMA foreign_keys = ON;")
+	if err != nil {
+		return fmt.Errorf("[Pragma] Error enabling foreign keys: %w", err)
+	}
+	_, err = s.db.Exec("PRAGMA journal_mode = WAL;")
+	if err != nil {
+		return fmt.Errorf("[Pragma] Error setting journal mode: %w", err)
+	}
+	_, err = s.db.Exec("PRAGMA synchronous = NORMAL;")
+	if err != nil {
+		return fmt.Errorf("[Pragma] Error setting synchronous mode: %w", err)
+	}
+	_, err = s.db.Exec("PRAGMA cache_size = 10000;")
+	if err != nil {
+		return fmt.Errorf("[Pragma] Error setting cache size: %w", err)
+	}
+	_, err = s.db.Exec("PRAGMA busy_timeout = 5000;")
+	if err != nil {
+		return fmt.Errorf("[Pragma] Error setting busy timeout: %w", err)
+	}
+	_, err = s.db.Exec("PRAGMA temp_store = MEMORY;")
+	if err != nil {
+		return fmt.Errorf("[Pragma] Error setting temp store: %w", err)
+	}
+	_, err = s.db.Exec("PRAGMA page_size = 4096;")
+	if err != nil {
+		return fmt.Errorf("[Pragma] Error setting page size: %w", err)
+	}
+	_, err = s.db.Exec("PRAGMA auto_vacuum = FULL;")
+	if err != nil {
+		return fmt.Errorf("[Pragma] Error setting auto vacuum: %w", err)
+	}
+	_, err = s.db.Exec("PRAGMA secure_delete = ON;")
+	if err != nil {
+		return fmt.Errorf("[Pragma] Error setting secure delete: %w", err)
 	}
 
 	return nil
