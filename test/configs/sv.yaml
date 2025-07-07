@@ -1,0 +1,8 @@
+servers:
+  source:
+    host: "horizon"
+    path: "/path/to/private/key"
+
+  destination:
+    host: "localhost"
+    path: "/home/david-carrillo/Descargas/test-backup"
