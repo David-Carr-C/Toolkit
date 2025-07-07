@@ -2,6 +2,10 @@ package database
 
 import "github.com/spf13/cobra"
 
+type Flags struct {
+	database string
+}
+
 func NewDatabase() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "database",
@@ -10,6 +14,13 @@ func NewDatabase() *cobra.Command {
 		Long:    "Automatiza tareas de administración de bases de datos.",
 		Run:     Run,
 	}
+
+	cmd.Flags().StringP(
+		"database",
+		"d",
+		"",
+		"Base de datos a administrar",
+	)
 
 	return cmd
 }

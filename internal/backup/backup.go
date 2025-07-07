@@ -1,14 +1,11 @@
 package backup
 
 import (
+	"criteria.mx/scripts/internal/core/service"
 	"fmt"
 
 	"github.com/spf13/cobra"
 )
-
-type Flags struct {
-	databaseName string
-}
 
 func getFlags(cmd *cobra.Command) (*Flags, error) {
 	database, err := cmd.Flags().GetString("database")
@@ -17,23 +14,22 @@ func getFlags(cmd *cobra.Command) (*Flags, error) {
 	}
 
 	return &Flags{
-		databaseName: database,
+		database,
 	}, nil
 }
 
 func Run(cmd *cobra.Command, args []string) {
 	flags, err := getFlags(cmd)
 	if err != nil {
-		cmd.Printf("Error al obtener las banderas: %v\n", err)
+		fmt.Printf("[Run] Ocurrió el siguiente error: %s\n", err)
 		return
 	}
 
-	cmd.Println("Flags obtenidos:")
-	cmd.Println("Nombre de la base de datos:", flags.databaseName)
-
-	for _, arg := range args {
-		cmd.Println("Argumento:", arg)
+	switch {
+	case flags.database != "":
+		err := service.Database(flags.database)
+		if err != nil {
+			fmt.Printf("[Run] Ocurrió el siguiente error: %s\n", err)
+		}
 	}
-
-	cmd.Println("Comando de backup ejecutado")
 }

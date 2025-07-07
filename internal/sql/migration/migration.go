@@ -24,6 +24,7 @@ func (s *Migration) migrate() error {
 	if err := s.pragma(); err != nil {
 		return fmt.Errorf("[Migrate] Error setting PRAGMA: %w", err)
 	}
+
 	if err := s.createLogTable(); err != nil {
 		return fmt.Errorf("[Migrate] Error creating tables: %w", err)
 	}

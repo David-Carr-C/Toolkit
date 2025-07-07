@@ -7,6 +7,21 @@ import (
 	"criteria.mx/scripts/pkg"
 )
 
+func GetDatabaseStruct(dbName string) (*DatabaseConfig, error) {
+	var config *Config
+	err := interfaces.LoadConfig("configs/db.yaml", &config)
+	if err != nil {
+		return nil, fmt.Errorf("[GetDatabaseConfig] error loading config: %w", err)
+	}
+
+	if dbConfig, exists := config.Databases[dbName]; exists {
+		dbConfig.Password = pkg.ExpandEnvVars(dbConfig.Password)
+		return &dbConfig, nil
+	}
+
+	return nil, fmt.Errorf("[GetDatabaseConfig] database %s not found in config", dbName)
+}
+
 func GetDatabaseConfig(dbName string) ([]string, error) {
 	var config *Config
 	err := interfaces.LoadConfig("configs/db.yaml", &config)

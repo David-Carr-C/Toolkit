@@ -5,4 +5,4 @@ servers:
 
   destination:
     host: "localhost"
-    path: "/path/to/local/private/key"
+    path: "/home/david-carrillo/Descargas/test-backup"

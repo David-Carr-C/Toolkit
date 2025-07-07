@@ -42,7 +42,6 @@ run:
 	./build/$(BINARY_NAME) $(ARGS)
 	@echo "Run complete"
 	@echo "$(ARROW)$(BOLD)$(MAGENTA)Run complete$(RESET)"
-	@exit 1
 
 
 # Run the tests
