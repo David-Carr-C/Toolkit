@@ -5,6 +5,7 @@ type DatabaseConfig struct {
 	Password  string   `yaml:"password"`
 	Host      string   `yaml:"host"`
 	Port      int      `yaml:"port"`
+	Tunnel    bool     `yaml:"tunnel"`
 	BackupDbs []string `yaml:"backup_dbs"`
 }
 

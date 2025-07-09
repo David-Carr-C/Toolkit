@@ -4,24 +4,28 @@ databases:
     password: "${CRITERIA_PASSWORD}"
     host: "localhost"
     port: 3306
+    tunnel: false
     backup_dbs:
       - "calidad_pcb"
       - "productivo_pcb"
   mip:
-    user: "mip_user"
+    user: "backup"
     password: "${MIP_PASSWORD}"
-    host: "localhost"
     port: 3306
+    host: "localhost" # Si es tunnel debe ser localhost
+    tunnel: true # Si es tunnel debe ser localhost
     backup_dbs:
       - "calidad_mip"
       - "productivo_mip"
+      - "wordpress_cubomx"
+      - "wordpress_pigsiscom"
 
   horizon:
     user: "horizon_user"
     password: "${HORIZON_PASSWORD}"
     host: "localhost"
     port: 3306
+    tunnel: false
     backup_dbs:
       - "calidad_escuela"
       - "productivo_escuela"
-

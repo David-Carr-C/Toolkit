@@ -1,7 +1,19 @@
 servers:
   source:
-    host: "horizon"
+    host: "horizon-bk"
     path: "/path/to/private/key"
+
+    # Si esta habilitado el tunner la config de ssh debe tener agregado:
+    #Host horizon-bk
+    #User criteria
+    #Hostname 74.208.11.91
+    #pubkeyauthentication yes
+    #IdentitiesOnly yes
+    #IdentityFile ~/.ssh/id_horizon
+    #Compression no
+    #ControlMaster auto
+    #ControlPath ~/.ssh/sockets/%r@%h-%p
+    #ControlPersist 1h
 
   destination:
     host: "localhost"

@@ -3,7 +3,9 @@ package backup
 import "github.com/spf13/cobra"
 
 type Flags struct {
-	database string
+	database    string
+	source      string
+	destination string
 }
 
 func NewBackup() *cobra.Command {
@@ -15,11 +17,22 @@ func NewBackup() *cobra.Command {
 		Run:     Run,
 	}
 
-	cmd.Flags().StringP(
+	cmd.Flags().String(
 		"database",
-		"d",
 		"",
 		"Nombre de la base de datos para la que se desea realizar el backup",
+	)
+
+	cmd.Flags().String(
+		"source",
+		"",
+		"Origen desde donde se obtendran los datos para el backup",
+	)
+
+	cmd.Flags().String(
+		"destination",
+		"",
+		"Ruta de destino donde se guardará el backup",
 	)
 
 	return cmd
