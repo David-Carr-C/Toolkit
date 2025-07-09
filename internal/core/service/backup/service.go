@@ -101,7 +101,6 @@ func NewDatabaseService(database, source, destination string) (*DatabaseService,
 
 func (d *DatabaseService) databaseSuccess(databaseName string) {
 	// TODO: Implementar la lógica para manejar el éxito del backup de la base de datos
-	fmt.Println("[DatabaseService] database success", databaseName)
 }
 
 func (d *DatabaseService) stopTunnel() error {
@@ -203,7 +202,6 @@ func (d *DatabaseService) backupIt(databaseToBackup string, errors chan backupRe
 	cmd.Stdout = outputFile
 	cmd.Stderr = os.Stderr
 
-	fmt.Println("Ejecutando mysqldump para la base de datos:", databaseToBackup)
 	if err := cmd.Run(); err != nil {
 		errors <- backupResult{
 			err:     fmt.Errorf("[BackupIt] Error al ejecutar mysqldump: %w, el %s backup fue cancelado", err, databaseToBackup),

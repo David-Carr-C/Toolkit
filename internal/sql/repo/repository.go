@@ -25,8 +25,8 @@ func NewRepository(db *sql.DB) (*RepositoryLog, error) {
 	return repo, nil
 }
 
-func (r *RepositoryLog) InsertLog(message, exception, level string) (int64, error) {
-	result, err := r.sqlite.Exec(`INSERT INTO log (message, exception, level) VALUES (?, ?, ?)`, message, exception, level)
+func (r *RepositoryLog) InsertLog(element, message, exception, level string) (int64, error) {
+	result, err := r.sqlite.Exec(`INSERT INTO log (element, message, exception, level) VALUES (?, ?, ?, ?)`, element, message, exception, level)
 	if err != nil {
 		return 0, err
 	}
@@ -111,7 +111,7 @@ func (r *RepositoryLog) UpdateSynchronized(idLog int64, synchronized bool) error
 // Retorna:
 // - *model.Log Retorna un puntero al modelo Log con los datos del log
 func (r *RepositoryLog) GetLog(idLog, limit int64) (*model.Log, error) {
-	query := `SELECT l.id, l.message, l.exception, l.level, l.created_at, l.synchronized,
+	query := `SELECT l.id, l.element, l.message, l.exception, l.level, l.created_at, l.synchronized,
 				s.server AS source_server,
 				d.server AS destination_server, d.path AS destination_path,
 				b.sha256 AS backup_sha256,
@@ -134,16 +134,17 @@ func (r *RepositoryLog) GetLog(idLog, limit int64) (*model.Log, error) {
 	var log model.Log
 	err := row.Scan(
 		&log.ID,
+		&log.Element,
 		&log.Message,
 		&log.Exception,
 		&log.Level,
 		&log.CreatedAt,
+		&log.Synchronized,
 		&log.SourceServer,
 		&log.DestinationServer,
 		&log.DestinationPath,
 		&log.BackupSHA256,
 		&log.DatabaseSHA256,
-		&log.Synchronized,
 	)
 	if err != nil {
 		if err == sql.ErrNoRows {

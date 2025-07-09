@@ -23,6 +23,7 @@ func ReportIt(element string, errToSave error, logLevel string) error {
 	}
 
 	_, err = repository.InsertLog(
+		element,
 		fmt.Sprintf("No pudo ser respaldado el elemento [%s] debido al error [%s]", element, errToSave.Error()),
 		fmt.Sprintf("Error: %s", errToSave.Error()),
 		logLevel,

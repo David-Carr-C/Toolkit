@@ -2,6 +2,7 @@ package model
 
 type Log struct {
 	ID                int64
+	Element           string
 	Message           string
 	Exception         string
 	Level             string

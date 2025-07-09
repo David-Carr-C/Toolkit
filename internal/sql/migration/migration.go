@@ -92,11 +92,12 @@ func (s *Migration) pragma() error {
 func (s *Migration) createLogTable() error {
 	_, err := s.db.Exec(`CREATE TABLE IF NOT EXISTS log (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+		created_at DATETIME DEFAULT (datetime('now', 'localtime')),
+		element TEXT NOT NULL,
 		message TEXT NOT NULL,
 		exception TEXT,
 		synchronized BOOLEAN NOT NULL DEFAULT 0,
-		level TEXT NOT NULL CHECK(level IN ('DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'))
+		level TEXT NOT NULL CHECK(level IN ('SUCCESS', 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'))
 	);`)
 
 	if err != nil {
