@@ -30,7 +30,7 @@ func getFlags(cmd *cobra.Command) (*Flags, error) {
 	}, nil
 }
 
-func Run(cmd *cobra.Command, args []string) {
+func Run(cmd *cobra.Command, _ []string) {
 	flags, err := getFlags(cmd)
 	if err != nil {
 		fmt.Printf("[Run] Ocurrió el siguiente error: %s\n", err)
